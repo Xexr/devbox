@@ -586,6 +586,20 @@ else
     ok "Beads already installed ($(bd version 2>&1 | head -1))"
 fi
 
+# ── Gas Town ──
+step "Gas Town"
+if ! command -v gt &>/dev/null; then
+    GASTOWN_DIR="$(mktemp -d)"
+    git clone --depth=1 https://github.com/steveyegge/gastown.git "$GASTOWN_DIR"
+    cd "$GASTOWN_DIR"
+    make install
+    cd /
+    rm -rf "$GASTOWN_DIR"
+    ok "Gas Town installed ($(gt version 2>&1))"
+else
+    ok "Gas Town already installed ($(gt version 2>&1))"
+fi
+
 # ── SRPS (System Resource Protection Script) ──
 step "SRPS (System Resource Protection)"
 if ! command -v sysmoni &>/dev/null; then
