@@ -361,11 +361,11 @@ else
     ok "uv already installed"
 fi
 
-step "Rust (nightly)"
+step "Rust (stable)"
 if [[ ! -x "$TARGET_HOME/.cargo/bin/cargo" ]]; then
     TMPINSTALLER="$(mktemp)"
     download_installer "https://sh.rustup.rs" "$TMPINSTALLER"
-    sh "$TMPINSTALLER" -y --default-toolchain nightly
+    sh "$TMPINSTALLER" -y --default-toolchain stable
     rm -f "$TMPINSTALLER"
     # Source cargo env for this session
     source "$TARGET_HOME/.cargo/env" 2>/dev/null || true
